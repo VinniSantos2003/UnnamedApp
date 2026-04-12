@@ -1,5 +1,22 @@
 ﻿@page "/comprados"
-<h3> Comprados </h3>
+@using UnnamedApp.Mobile.Components.NoRoute
+
+<SearchBar/>
+<ItemDisplay Item=NewItem/>
+
 @code {
-   
+    public Item? NewItem { get; set; } 
+    public List<Item?>? FilteredItems { get; set; } //
+
+    protected override Task OnInitializedAsync()
+    {
+        NewItem = new();
+        NewItem.Name = "Teste 1";
+        NewItem.TotalPrice = 1000;
+        NewItem.WhenItWasBought = DateOnly.FromDateTime(DateTime.Now);
+
+        return base.OnInitializedAsync();
+    }
+
 }
+
